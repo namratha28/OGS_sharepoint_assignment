@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+  display: inline;
+}
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+ul.breadcrumb li a {
+  color: #080d11;
+  text-decoration: none;
+}
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+a:active{
+    background-color: yellow;
+    border:yellow;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+  
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+:target{
+    border: 2px solid #D4D4D4;
+  background-color: #e5eecc;
+}
+#ss{
+    background-color: black;
+}
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+    
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="#abstract">Abstract</a>
+  <a href="#section1">Section1</a>
+  <ul>
+    <li class="hidden-one"><a href="#section1.1">Sub Section1.1</a></li>
+    <li class="hidden-one"><a href="#section1.2" id="ss">Sub Section1.2</a></li>
+  </ul>
+  <a href="#section2">Section2</a>
+  <ul>
+    <li class="hidden-one"><a href="#section2.1">Sub Section2.1</a></li>
+    <li class="hidden-one"><a href="#section2.2">Sub Section2.2</a></li>
+  </ul>
+  <a href="#section3">Section3</a>
+ 
+  
+</div>
+
+<div id="main">
+  <button class="openbtn" onclick="openNav(this)">☰</button> 
+  <ul class="breadcrumb">
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#section1">Section1</a></li>
+    <li><a href="#section1.1">Sub Section1.1</a></li>
+    <li><a href="#section1.2">Sub Section1.2</a></li>
+    <li><a href="#section2">Section2</a></li>
+    <li><a href="#section2.1">..</a></li>
+    <li><a href="#section2.2">..</a></li>
+    <li><a href="#section3">Sub Section3</a></li>
+    
+  </ul> 
+  <h1>What is a Good Prediction?
+    Issues in Evaluating General Value Functions Through Error</h1>
+  <div id="abstract"><h2>ABSTRACT</h2><p>Constructing and maintaining knowledge of the world is a central
+    problem for artificial intelligence research. Approaches to constructing an agent’s knowledge using predictions have received increased
+    amounts of interest in recent years. A particularly promising collection of research centres itself around architectures that formulate
+    predictions as General Value Functions (GVFs), an approach commonly referred to as predictive knowledge. A pernicious challenge
+    for predictive knowledge architectures is determining what to predict. In this paper, we argue that evaluation methods—i.e., return
+    error and RUPEE—are not well suited for the challenges of determining what to predict. As a primary contribution, we provide
+    extended examples that evaluate predictions in terms of how they
+    are used in further prediction tasks: a key motivation of predictive knowledge systems. We demonstrate that simply because a
+    GVF’s error is low, it does not necessarily follow the prediction is
+    useful as a cumulant. We suggest evaluating 1) the relevance of a
+    GVF’s features to the prediction task at hand, and 2) evaluation of
+    GVFs by how they are used. To determine feature relevance, we
+    generalize AutoStep to GTD, producing a step-size learning method
+    suited to the life-long continual learning settings that predictive
+    knowledge architectures are commonly deployed in. This paper
+    contributes a first look into evaluation of predictions through their
+    use, an integral component of predictive knowledge which is as of
+    yet explored.<a href="#section1.2" id="ss" onclick="openNav(this)">To Sub Section1.2</a></li>
+    </p>
+    </div>
+
+    <div id="section1"><h2>SECTION1 : PREDICTIONS AS KNOWLEDGE:
+        UNDERSTANDING THE WORLD THROUGH
+        FORECASTS
+        </h2><p>Intelligence has been defined many ways throughout history; a
+            central criteria to many of these definitions is the ability to achieve
+            goal-oriented behaviour: the ability to learn, plan, and act in order
+            to accomplish a task. Acquiring and using that knowledge to support decision-making plays an important role in intelligent systems.
+            It is no surprise, then, that a long-standing pursuit of Artificial
+            Intelligence research is the development of agents capable of independently constructing knowledge of their environment.
+            The grand challenge of these systems is determining how to construct knowledge. The world is complex; it is so complex that at any
+            given moment there is insufficient information available to us with
+            our limited senses to make decisions. It is impossible to understand
+            the entirety of the world from our immediate observations alone.
+            To cope with this immense complexity, we construct abstractions
+            with which we can interpret the world in order to make decisions.
+            The challenge of constructing knowledge is then the challenge of
+            relating an agent’s sensations over time in order to construct these
+            abstractions with which we can come to understand the world.
+            One approach to knowledge construction is predictive knowledge:
+            a growing collection of research which attempts to express all of
+            an agent’s world knowledge exclusively in terms of predictions
+            about the environment, typically using the approach of [28]. As an
+            agent interacts with the world, it estimates many General Value
+            Functions—the expectation of many sensorimotor signals. Ordinary
+            value functions underpin most of reinforcement learning: they
+            estimate the value, or discounted sum of future reward in a given
+            state [27]; General Value Functions (GVFs) expand upon value
+            functions by estimating arbitrary values an agent has access to, not
+            just the reward1
+            .
+            For instance, a predictive knowledge agent might express one
+            aspect of knowledge about keys as “If I put my hand in my pockets,
+            I predict I will feel my keys”. Such a complex and abstract notion as
+            “my keys” would be be impractical to capture through one prediction alone. Many predictions must be made in order to capture all
+            aspects of such a broad concept as keys: many predictions would
+            be necessary both to inform the state of such a prediction, and to
+            construct the target the prediction is about. For these reasons, a
+            central component of predictive knowledge is the use of predictions
+            to inform one another. Knowledge is constructed starting with lowlevel immediate predictions about sensation—such as, “can I touch
+            something in front of me”?—which can then be interrelated to express more abstract, conceptual aspects of the environment[22]—for
+            instance, spacial awareness [21].
+            In this paper, we argue that evaluation methods for predictive
+            knowledge systems are as of yet underdeveloped, leading to an
+            inability to differentiate between a prediction that is useful in informing decision making, and a useless one. As we will show in
+            what follows, this inability to precisely evaluate single predictions
+            has consequences for how we both structure and how we evaluate
+            predictive knowledge architectures as a whole. To explicate this
+            further, we examine the definition of a GVF and discuss how GVFs
+            can be interrelated to form abstractions in a worked example.
+        </p>
+    </div>
+
+    <div id="section1.1"><h2>SECTION1.1 : THE ANATOMY OF A PREDICTION:
+                GENERAL VALUE FUNCTIONS
+                </h2><p>Intelligence has been defined many ways throughout history; a
+                    central criteria to many of these definitions is the ability to achieve
+                    goal-oriented behaviour: the ability to learn, plan, and act in order
+                    to accomplish a task. Acquiring and using that knowledge to support decision-making plays an important role in intelligent systems.
+                    It is no surprise, then, that a long-standing pursuit of Artificial
+                    Intelligence research is the development of agents capable of independently constructing knowledge of their environment.
+                    The grand challenge of these systems is determining how to construct knowledge. The world is complex; it is so complex that at any
+                    given moment there is insufficient information available to us with
+                    our limited senses to make decisions. It is impossible to understand
+                    the entirety of the world from our immediate observations alone.
+                    To cope with this immense complexity, we construct abstractions
+                    with which we can interpret the world in order to make decisions.
+                    The challenge of constructing knowledge is then the challenge of
+                    relating an agent’s sensations over time in order to construct these
+                    abstractions with which we can come to understand the world.
+                    One approach to knowledge construction is predictive knowledge:
+                    a growing collection of research which attempts to express all of
+                    an agent’s world knowledge exclusively in terms of predictions
+                    about the environment, typically using the approach of [28]. As an
+                    agent interacts with the world, it estimates many General Value
+                    Functions—the expectation of many sensorimotor signals. Ordinary
+                    value functions underpin most of reinforcement learning: they
+                    estimate the value, or discounted sum of future reward in a given
+                    state [27]; General Value Functions (GVFs) expand upon value
+                    functions by estimating arbitrary values an agent has access to, not
+                    just the reward1
+                    .
+                    For instance, a predictive knowledge agent might express one
+                    aspect of knowledge about keys as “If I put my hand in my pockets,
+                    I predict I will feel my keys”. Such a complex and abstract notion as
+                    “my keys” would be be impractical to capture through one prediction alone. Many predictions must be made in order to capture all
+                    aspects of such a broad concept as keys: many predictions would
+                    be necessary both to inform the state of such a prediction, and to
+                    construct the target the prediction is about. For these reasons, a
+                    central component of predictive knowledge is the use of predictions
+                    to inform one another. Knowledge is constructed starting with lowlevel immediate predictions about sensation—such as, “can I touch
+                    something in front of me”?—which can then be interrelated to express more abstract, conceptual aspects of the environment[22]—for
+                    instance, spacial awareness [21].
+                    In this paper, we argue that evaluation methods for predictive
+                    knowledge systems are as of yet underdeveloped, leading to an
+                    inability to differentiate between a prediction that is useful in informing decision making, and a useless one. As we will show in
+                    what follows, this inability to precisely evaluate single predictions
+                    has consequences for how we both structure and how we evaluate
+                    predictive knowledge architectures as a whole. To explicate this
+                    further, we examine the definition of a GVF and discuss how GVFs
+                    can be interrelated to form abstractions in a worked example.
+        </p>
+    </div>
+    <div id="section1.2"><h2>SECTION1.2 : THE PROBLEM OF EVALUATION:
+        DECIDING WHAT TO LEARN
+        </h2><p>There has been a steady progress in predictive approaches to knowledge in Reinforcement Learning. The first suggestion that knowledge could be constructed using incrementally learned predictions
+            2Also known as the learning rate.
+            in Reinforcement Learning dates back to early papers on Temporaldifference learning [26], and is influenced by a long line of AI
+            research focused constructing models of the world exclusively in
+            terms of an agent’s observations [1–3, 22]. These early suggestions
+            have been shaped into a proposal that knowledge can be constructed
+            online, in real-time, continually, as an agent interacts with their
+            environment [28], typically by learning many value functions.
+            There has been success in incrementally learning interrelated
+            predictions to conceptualize abstract aspects of the environment
+            [16, 29], which has been further extended from temporal-difference
+            networks to networks of General Value Functions [23]. Along the
+            way, much work has focused on improving understanding of the underlying methods upon which predictive knowledge architectures
+            rely: a few such works include demonstrations of the real-time
+            effectiveness of predictive knowledge [28], step-size adaptation
+            for tuning-free learning [11, 15], and better understanding of the
+            empirical performance of off-policy learning methods [6].
+</p>
+</div>
+
+<div id="section2"><h2>SECTION2 :  ISSUES WITH EVALUATING
+    INDIVIDUAL PREDICTIONS
+    </h2><p>At first blush, using error to differentiate between the useful and
+        the useless seems effective. This is not so. Figure 2 presents a simple
+        square-pulse (in grey) as a cumulantc which two functions estimate
+        the return of. While this example is contrived, there are many
+        situations in which we would want to make such a prediction;
+        being able to detect the onset of events is often useful in decisionmaking. For example, in the previous section, we worked out an
+        example where an agent built a sense of spatial awareness (Figure
+        1) by predicting whether it could touch something in front of itself;
+        In the spatial awareness example, touch is a binary signal that rises
+        and falls, similar to this simple synthetic example.
+        We present two estimates (green and orange) of the square-pulse
+        with a discount factor of γ = 0.1. The predictive estimate rises
+        before the signal of interest rises, and falls before the signal of
+        interest falls—it precedes the signal of interest. The tracking estimate rises and falls after the signal of interest: it is not predictive.
+        When making the decision what prediction to make in order to inform decision-making, it is obvious to the engineer hand-designing
+        3This approach is advocated in the original proposal of [28] and used in numerous
+        application [4, 8]
+        Figure 2: Two estimates of the same signal: one in green and
+        one in orange.
+        GVFs that the tracking estimate is poor. The tracking prediction is
+        redundant: we would be better off simply using the original observation as a feature. While this insight is obvious when inspecting
+        the relationship of GVFs to their signals of interest, systems that
+        autonomously pick which predictions to make use error estimates
+        to differentiate between GVFs that are useful for informing further
+        decision-making and those which are not. Evaluating based on
+        error alone, we would be led to the conclusion that the tracking
+        estimate should be kept.
+        Low return error does not imply that a GVF is useful. More than
+        a contrived example, these predictions are examples of prototypical
+        GVFs we are interested in using to inform decision-making: we are
+        often interested in anticipating the onset of a stimulus. See [10]
+        for an example about how such difficulties play out on predictions
+        used to inform bionic limb control systems for individuals with
+        upper-limb amputations.
+        
+    </p>
+</div>
+
+<div id="section2.1"><h2>SECTION2.1 : ISSUES WITH EVALUATING
+    NETWORKS OF PREDICTIONS
+            </h2><p>In the off-policy setting, we estimate value functions under some
+                policy π which may not match the agent’s current behaviour µ.
+                By making predictions about behaviours the agent is not always
+                taking, we introduce a new problem: how do we determine how
+                accurate our predictions are when they are predicting futures which
+                do not necessarily occur? In the on-policy case, it was possible to
+                estimate the return online. We could simply store recent estimates
+                and compare them to the observed return. In the off-policy case, the
+                behaviour policy may not overlap enough with the target policy
+                to accurately estimate the true-return. Enough experience can be
+                periodically gathered by taking an excursion [20]—by setting the
+                behaviour policy to the target policy in order to collect enough experience to estimate the return for a policy π. By taking an excursion,
+                we are turning off-policy evaluation into an on-policy evaluation
+                problem for a brief period of time—by forgoing other learning goals
+                we are able to collect enough experience to evaluate a prediction;
+                however, the cost of taking an excursion can be substantial. An
+                agent shouldn’t have to leap off a cliff in order to determine whether
+                it was correct in predicting that jumping would be lethal. Moreover,
+                by taking an excursion, we are only able to evaluate GVFs under
+                a specific policy π—possibly a small subset of all the GVFs being
+                learnt at any given time.
+                An off-policy error metric which can be calculated on-line in
+                real-time is RUPEE: the Recent Unsigned Projected Error Estimate.
+                RUPEE estimates the mean squared projected bellman error of
+                a single GVF 4
+                . While RUPEE does not correspond to prediction
+                accuracy, it gives an estimate of learning progress with respect
+                to the features used to construct an agent’s state representation,
+                and can be calculated online. For the following experiment we
+                use RUPEE as an evaluation metric. In addition to each of the
+                aforementioned concerns
+    </p>
+</div>
+<div id="section2.2"><h2>SECTION2.2 : A PROPOSAL: EVALUATING FEATURE
+    RELEVANCE
+    </h2><p>In the preceding sections, we laid an argument outlining how existing evaluation methods for General Value Functions in predictive
+        knowledge architectures are insufficient. We demonstrated that return error in isolation of any additional information is misleading:
+        return error and RUPEE are insufficient to determine the quality of
+        a GVF in the on-policy and off-policy settings. Most importantly,
+        we demonstrated how the error of a prediction tells us little about
+        how useful a prediction is for informing further predictions—the
+        foundational motivation of predictive knowledge. We now propose an alternative approach to tackling evaluation for predictive
+        knowledge architectures focusing on: feature relevance.
+        All else being equal, a good forecast is one whose features are
+        well aligned with the prediction problem at hand: that is, the features are relevant. One way to determine the relevance of features
+        is by learning step-sizes. Some meta-gradient learning methods
+        tune the step-size parameter α based on the relevance of a given
+        feature. For instance, TD Incremental Delta-Bar-Delta (TIDBD) [11]
+        assigns a step-size αi to each weight wi
+        , adjusting the step-size
+        based on the correlation of recent weight updates. If many weight
+        updates in the same direction are made, then a more efficient use
+        of experience would have been to make one large update with a
+        larger αi
+        . If an update has over-shot, then the weight updates will
+        be uncorrelated, and thus the step-size should be smaller. More
+        broadly, we can view these forms of step-size adaptation as the
+        most basic form of representation learning 5.
+</p>
+</div>
+
+<div id="section3"><h2>SECTION3: WHAT IS GOOD PREDICTION
+    </h2><p>When we examined the first layer’s Touch predictions, the tracking GVF seemed superior based on RUPEE. When we examine
+        the RUPEE of the second set of predictions (Figure 3b), we catch
+        a glimpse of the down-stream effects of this misunderstanding.
+        Although only slight, the GVFs dependent on the tracking Touch
+        prediction have a higher RUPEE than those using the predictive
+        Touch GVF. This point is brought into focus when we examine the
+        predictions made by each touch-left and touch-right prediction (Figures 5b and 5c). When we examine average trajectories
+        where the agent approaches a wall and turns left, the touch-right
+        prediction using the tracking touch GVF as a cumulant (Figure
+        5b, in orange) rises and falls with its underlying GVF. That is, the
+        touch-right prediction with a tracking cumulant predicts wall
+        even before turning such that the wall is to its right, while the
+        touch-right prediction with a predictive cumulant is able to better match the ground-truth. This disparity is further exacerbated in
+        Figure 5c, where we see that the touch-left prediction dependent
+        on the tracking touch GVF as a cumulant incorrectly anticipates
+        a wall is on its left, even as it turns away from it. By using a poor
+        underlying touch prediction, the higher-order GVFs become unlearnable. Through examining the error—the metric used to inform
+        predictive knowledge architectures—we miss this. The usage of a
+        prediction tells us more about the quality of that prediction than
+        error alone.
+        Our arguments rely on demonstrating quirks of particular GVF
+        estimates—we demonstrate that poor behaviour of estimates can
+        be hidden by commonly used error metrics. This kind of inquiry
+        into the structure of predictions cannot be automated: it relies on
+        inspection by system designers—a form of evaluation which cannot
+        scale. Moreover, these precise comparison are limited to simple domains. The room our agent inhabits is so simple that we can acquire
+        the ground-truth in order to examine the predictions as is done
+        in Figure 5. In many domains of interest, this ease of comparison
+        is simply impossible. Each of these factors further frustrates the
+        problem of determining what to learn, and whether particular GVFs
+        are useful for informing decision-making. In problem settings that
+        are more complex, system designers have no recourse and must
+        address the issues we have raised.
+</p>
+</div>
+
+
+        
+</div>
+
+  
+
+<script>
+function openNav(x) {
+  alert(x.id);
+  var id;
+  
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+  if(x.id=='ss'){ document.getElementById(x.id).style.background="#e5eecc";}
+  else{document.getElementById("ss").style.background="black";}
+ 
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+   
+</body>
+</html> 
